@@ -1,0 +1,37 @@
+<script>
+
+//sieb des E - (c) hhtg 16-12-2018 16h37
+
+anzPrim=100000000;
+document.write("Zahlen bis : ");
+document.write(anzPrim);
+//primliste=[]
+//for (n=2;n<=anzPrim;n++){primliste[n]=0;}
+t=new Date().getTime();
+primliste=new Array(anzPrim);
+primliste.fill(0);
+for (n=2;n<=anzPrim/2;n++)
+{
+if (primliste[n]==0)
+	{
+	for (p=n*n;p<=anzPrim;p=p+n)
+		{
+		primliste[p]=1;
+		}
+	}
+}
+anz=0;
+for (n=2;n<=anzPrim;n++)
+	{
+	if (primliste[n]==0)
+		{
+		anz++;
+		}
+	}
+document.write(". Anzahl Primzahlen: ");
+document.write(anz);
+document.write(", in ");
+document.write((new Date().getTime()-t)/1000);
+document.write(" Sekunden ermittelt!");
+
+</script>
