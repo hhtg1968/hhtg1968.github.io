@@ -1,0 +1,33 @@
+<script>
+
+//sieb des E - (c) hhtg 16-09-2016 22h37
+
+anzPrim=4096;
+document.write("Zahlen bis : ");
+document.write(anzPrim);
+primliste=[]
+for (n=2;n<=anzPrim;n++){primliste[n]=0;}
+for (n=2;n<=anzPrim/2;n++)
+{
+if (primliste[n]==0)
+	{
+	for (p=n*n;p<=anzPrim;p=p+n)
+		{
+		primliste[p]=1;
+		}
+	}
+}
+anz=0;
+document.write(". Primzahlen: ");
+for (n=2;n<=anzPrim;n++)
+	{
+	if (primliste[n]==0)
+		{
+		document.write(n);
+		document.write(", ");
+		anz++;
+		}
+	}
+document.write(". Anzahl: ");
+document.write(anz);
+</script>
