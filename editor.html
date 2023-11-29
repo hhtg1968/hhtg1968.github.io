@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTextJS 1.0 (c) hhtg. 2023</title>
-    <!-- lv v1 28-11-2023 12h06 -->
+    <!-- lv v1 29-11-2023 20h18 -->
     <style>
         #buttonRow{
             font-size: smaller;
@@ -20,6 +20,7 @@
             border: 2px solid #555555;
         }
         #textbox{
+            width:99%;
             font-family: monospace;
             font-size: large;
         }
@@ -34,7 +35,12 @@
             border: 2px solid #555555
         }
         #copyright{
-            text-align: right
+            /* display: flex; */
+            /* text-align: right; */
+            /* position: absolute:
+            top:0;
+            right:0; */
+            float: right;
         }
     </style>
     <script defer="true">
@@ -75,10 +81,11 @@
         <button onclick="doNew()">new</button>
         <button onclick="doRandom()">random</button>
         <label for="textName">file name:</label>
-        <input id="textName" type text value="untiteled.txt">
+        <input id="textName" type text value="untiteld.txt">
         <button>save</button>
         <button>save as...</button>
         <button>load...</button>
+        <span id="copyright">hTextJS v1 (c) hhtg. 2023</span>
         <br>
         <button>print...</button>
         <button onclick="doExport()">export...</button>
@@ -91,21 +98,21 @@
         <button onclick="doInfo()">INFO!</button>
     </div>
     <div id="textField">
-        <label for="textbox">text:</label>
-        <div id="copyright">jEditV1hhtg2023</div>
+        <!-- <label for="textbox">text:</label> -->
+        <!-- <div id="copyright">jEditV1hhtg2023</div> -->
         <textarea id="textbox" rows="24" cols="80">empty universe ...</textarea>
     </div>
     <div id="clip">
-        <label for="clipb">clipboard:</label>
-        <p id="clipb">
-            clipboard content
-        </p>
+        clipboard:
+        <span id="clipb">
+            empty
+        </span>
     </div>
     <div id="exportField">
-        <label for="exportPreview">export area:</label>
-        <p id="exportPreview">
-            area for export preview...
-        </p>
+        export area:
+        <span id="exportPreview">
+            empty
+        </span>
     </div>
 </body>
 </html>
