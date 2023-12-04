@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTextJS 1.0 (c) hhtg. 2023</title>
-    <!-- lv v1 29-11-2023 20h18 -->
+    <title>HTextJS 1.01 (c) hhtg. 2023</title>
+    <!-- lv v1.01 04-12-2023 18h45 -->
     <style>
+        body{
+            background-color: #444444;
+        }
         #buttonRow{
             font-size: smaller;
             background-color: #0000ee;
@@ -20,9 +23,15 @@
             border: 2px solid #555555;
         }
         #textbox{
+            background-color: #444444;
+            color: #eeeeee;
             width:99%;
             font-family: monospace;
             font-size: large;
+        }
+        #dName{
+            background-color: #0000ee;
+            color: #eeeeee;
         }
         #exportField{
             background-color: #00aa00;
@@ -45,10 +54,21 @@
     </style>
     <script defer="true">
         function doNew(){
-            document.getElementById("textbox").value="new ...";
+            document.getElementById("textbox").value="";
         }
         function doRandom(){
             document.getElementById("textbox").value="random ...";
+        }
+        function doDownload(){
+            let saveText = document.getElementById("textbox");
+            let fileN = document.getElementById("dName");
+            const textData = saveText.value;
+            const textDataBlob = new Blob([saveText.value],{ type: "text/plain" });
+            const downloadUrl = window.URL.createObjectURL(textDataBlob)
+            const downloadLink = document.createElement('a');
+            downloadLink.download = fileN.value
+            downloadLink.href = downloadUrl;
+            downloadLink.click()
         }
         function doExport(){
             insert=document.getElementById("textbox").value;
@@ -78,15 +98,16 @@
 </head>
 <body>
     <div id="buttonRow">
+        <button onclick="doInfo()">INFO!</button>
         <button onclick="doNew()">new</button>
         <button onclick="doRandom()">random</button>
-        <label for="textName">file name:</label>
-        <input id="textName" type text value="untitled.txt">
+        <input id="textName" type="file" value="untiteld.txt">
         <button>save</button>
-        <button>save as...</button>
-        <button>load...</button>
+        <button>load</button>
         <span id="copyright">hTextJS v1 (c) hhtg. 2023</span>
         <br>
+        <button onclick="doDownload()">download</button>
+        as:<input id="dName" type="text" value="empty.txt" size="10">
         <button>print...</button>
         <button onclick="doExport()">export...</button>
         <button onclick="doPreview()">export clipboard ...</button>
@@ -95,7 +116,6 @@
         <button>cut</button>
         <button onclick=""doPaste()>paste</button>
         <!-- <div id="copyToClipboard-a" class="clipboard icon"></div> -->
-        <button onclick="doInfo()">INFO!</button>
     </div>
     <div id="textField">
         <!-- <label for="textbox">text:</label> -->
