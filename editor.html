@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTextJS 1.01 (c) hhtg. 2023</title>
-    <!-- lv v1.01 04-12-2023 18h45 -->
+    <!-- lv v1.01 04-12-2023 19h43 -->
     <style>
         body{
             background-color: #444444;
@@ -44,11 +44,6 @@
             border: 2px solid #555555
         }
         #copyright{
-            /* display: flex; */
-            /* text-align: right; */
-            /* position: absolute:
-            top:0;
-            right:0; */
             float: right;
         }
     </style>
@@ -59,6 +54,17 @@
         function doRandom(){
             document.getElementById("textbox").value="random ...";
         }
+        function doLoad(){
+            let file = document.getElementById("textName").files[0];
+            let reader = new FileReader();
+            let textArea = document.getElementById("textbox");
+            reader.onload = function (e) {
+                let textArea = document.getElementById("textbox");
+                textArea.value = e.target.result;
+            reader.readAsText(file);
+            }
+            textArea.value ="quark!";
+        }
         function doDownload(){
             let saveText = document.getElementById("textbox");
             let fileN = document.getElementById("dName");
@@ -68,10 +74,10 @@
             const downloadLink = document.createElement('a');
             downloadLink.download = fileN.value
             downloadLink.href = downloadUrl;
-            downloadLink.click()
+            downloadLink.click();
         }
         function doExport(){
-            insert=document.getElementById("textbox").value;
+            let insert=document.getElementById("textbox").value;
             document.getElementById("exportPreview").innerHTML=insert;
         }
         function doPreview(){
@@ -92,7 +98,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("javascript Text Editor v1 by hhtg. 2023!");
+            alert("javascript Text Editor v1.01 by hhtg. 2023!");
         }
     </script>
 </head>
@@ -103,7 +109,7 @@
         <button onclick="doRandom()">random</button>
         <input id="textName" type="file" value="untiteld.txt">
         <button>save</button>
-        <button>load</button>
+        <button onclick="doLoad()">load</button>
         <span id="copyright">hTextJS v1 (c) hhtg. 2023</span>
         <br>
         <button onclick="doDownload()">download</button>
