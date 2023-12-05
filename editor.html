@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTextJS 1.01 (c) hhtg. 2023</title>
+    <title>HTextJS 1.02 (c) hhtg. 2023</title>
     <style>
         body{
             background-color: #444444;
@@ -11,13 +11,6 @@
         #buttonRow{
             font-size: smaller;
             background-color: #0000ee;
-            color: #ffffff;
-            border: 2px solid #555555;
-        }
-        #textField{
-            /* font-size:larger; */
-            /* font-family: monospace; */
-            background-color: #555555;
             color: #ffffff;
             border: 2px solid #555555;
         }
@@ -32,11 +25,11 @@
             background-color: #0000ee;
             color: #eeeeee;
         }
-        #exportField{
+        /* #exportField{
             background-color: #00aa00;
             color: #eeeeee;
             border: 2px solid #555555;
-        }
+        } */
         #clip{
             background-color: #dd0000;
             color: #eeeeee;
@@ -48,10 +41,13 @@
     </style>
     <script defer="true">
         function doNew(){
-            document.getElementById("textbox").value="";
+            if(confirm("do you really want to clear the text?")){
+                document.getElementById("textbox").value="";}   
         }
         function doRandom(){
-            document.getElementById("textbox").value="random ...";
+            if(confirm("this will create random AND clear the text! do you want to continue?")){
+                document.getElementById("textbox").value="random ...";
+            }
         }
         function doLoad(){
             let file = document.getElementById("textName").files[0];
@@ -78,7 +74,9 @@
         function printTextBox() {
             childWindow = window.open('','childWindow','location=yes, menubar=yes, toolbar=yes');
             childWindow.document.open();
-            childWindow.document.write('<html><head></head><body>');
+            // let n="filename";
+            let n=document.getElementById("dName").value;
+            childWindow.document.write('<html><head><title>'+n+'</title></head><body>');
             childWindow.document.write(document.getElementById('textbox').value.replace(/\n/gi,'<br>'));
             childWindow.document.write('</body></html>');
             childWindow.print();
@@ -107,7 +105,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.02 from 05-12-2023 10h58");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.02 from 05-12-2023 11h27");
         }
     </script>
 </head>
@@ -119,22 +117,19 @@
         <input id="textName" type="file" value="untiteld.txt">
         <button>save</button>
         <button onclick="doLoad()">load</button>
-        <span id="copyright">hTextJS v1 (c) hhtg. 2023</span>
-        <br>
+        <span id="copyright">hTextJS v1.02 (c) hhtg. 2023</span>
+        <!-- <br> -->
         <button onclick="doDownload()">download</button>
         as:<input id="dName" type="text" value="empty.txt" size="10">
-        <button onclick="printTextBox()">print...</button>
-        <button onclick="doExport()">export...</button>
+        <button onclick="printTextBox()">print/ export to PDF...</button>
+        <!-- <button onclick="doExport()">export...</button>
         <button onclick="doPreview()">export clipboard ...</button>
         <button onclick="doSelAll()">select all</button>
         <button onclick="doCopy()">copy</button>
         <button>cut</button>
-        <button onclick=""doPaste()>paste</button>
-        <!-- <div id="copyToClipboard-a" class="clipboard icon"></div> -->
+        <button onclick=""doPaste()>paste</button> -->
     </div>
-    <div id="textField">
-        <!-- <label for="textbox">text:</label> -->
-        <!-- <div id="copyright">jEditV1hhtg2023</div> -->
+    <div>
         <textarea id="textbox" rows="24" cols="80">empty universe ...</textarea>
     </div>
     <div id="clip">
@@ -143,11 +138,11 @@
             empty
         </span>
     </div>
-    <div id="exportField">
+    <!-- <div id="exportField">
         export area:
         <span id="exportPreview">
             empty
         </span>
-    </div>
+    </div> -->
 </body>
 </html>
