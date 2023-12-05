@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sieb des E (c) hhtg. 2023</title>
+    <script>
+        function doCalc(){
+            let ll=document.getElementById("upperLimit");
+            let l=ll.value;
+            if (l<2){
+                l=2;
+                document.writeln("kleiner2");
+                }
+            if(l>100000000){
+                l=100000000;
+                document.writeln("größer 100M")
+            }
+            let m=Math.sqrt(l);
+            let n=0;
+            let p=0;
+            let t=new Date().getTime();
+            //var pl=new Array(l+1); // does not function!?
+            var pl=new Array(100000001);
+            //let pro=document.getElementById("progress");
+            //pro.value=0;
+            pl.fill(0);
+            for(n=2;n<=m;n++){
+                //pro.value=100/m*n;
+                //requestAnimationFrame;
+                //setTimeout;
+	            if (pl[n]==0){
+		            for (p=n*n;p<=l;p=p+n){
+			            pl[p]=1;
+                    }
+                }
+            }
+            let anz=0;
+            for (n=2;n<=l;n++){
+	            if (pl[n]==0){
+		            anz++;
+                }
+            };
+            document.getElementById("anz").innerHTML=anz;
+            let d=(new Date().getTime()-t)/1000;
+            document.getElementById("dauer").innerHTML=d;
+        }
+    </script>
+    <style>
+        #anz,#dauer{border: 1px solid red}
+        #alles{background-color: #303030;
+            color: #dddddd;
+            border: 2px solid blue;
+            width: 100%}
+    </style>
+</head>
+<body>
+    <div id="alles">
+    <h3>
+        Primzahlen mit dem Sieb des Eratosthenes (c) hhtg. 2023
+    </h3>
+    <label for="upperLimit">Primzahlen bestimmen bis: </label>
+    <input id="upperLimit" name="upperLimit" type="number">
+    <button id="run" value="run" onclick="doCalc();">run</button>
+    <progress id="progress" value="0" max="100">000%</progress>
+    <br><br>
+    Anzahl der gefundenen Primzahlen: <span id="anz">0</span>
+    <br>
+    Dauer der Suche in Sekunden: <span id="dauer">0</span>
+    </div>
+</body>
+</html>
