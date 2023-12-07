@@ -2,8 +2,8 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTextJS 1.02 (c) hhtg. 2023</title>
+    <meta name="javascript editor Heinrich Hubbert" content="javascript, texteditor">
+    <title>HTextJS 1.03 (c) hhtg. 2023</title>
     <style>
         body{
             background-color: #444444;
@@ -53,13 +53,11 @@
             let file = document.getElementById("textName").files[0];
             let reader = new FileReader();
             let textArea = document.getElementById("textbox");
-            reader.onload = function (e) {
-                let textArea = document.getElementById("textbox");
-                textArea.value = e.target.result;
             reader.readAsText(file);
+            reader.addEventListener('load', function() {
+                textArea.value = reader.result;
+            },false);
             }
-            textArea.value ="quark!";
-        }
         function doDownload(){
             let saveText = document.getElementById("textbox");
             let fileN = document.getElementById("dName");
@@ -105,7 +103,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.02 from 05-12-2023 11h27");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.03 from 07-12-2023 21h42");
         }
     </script>
 </head>
@@ -115,11 +113,11 @@
         <button onclick="doNew()">new</button>
         <button onclick="doRandom()">random</button>
         <input id="textName" type="file" value="untiteld.txt">
-        <button>save</button>
+        <!-- <button>save</button> -->
         <button onclick="doLoad()">load</button>
-        <span id="copyright">hTextJS v1.02 (c) hhtg. 2023</span>
+        <span id="copyright">hTextJS v1.03 (c) hhtg. 2023</span>
         <!-- <br> -->
-        <button onclick="doDownload()">download</button>
+        <button onclick="doDownload()">save/ download</button>
         as:<input id="dName" type="text" value="empty.txt" size="10">
         <button onclick="printTextBox()">print/ export to PDF...</button>
         <!-- <button onclick="doExport()">export...</button>
