@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="javascript editor Heinrich Hubbert" content="javascript, texteditor">
-    <title>HTextJS 1.03 (c) hhtg. 2023</title>
+    <title>HTextJS 1.04 (c) hhtg. 2023</title>
     <style>
         body{
             background-color: #444444;
@@ -41,13 +41,21 @@
     </style>
     <script defer="true">
         function doNew(){
-            if(confirm("do you really want to clear the text?")){
-                document.getElementById("textbox").value="";}   
+            if(document.getElementById("flag").checked){
+                if(confirm("do you really want to clear the text?")){
+                    document.getElementById("textbox").value="";}
+            }
+            else {
+                document.getElementById("textbox").value="";
+            }
         }
         function doRandom(){
-            if(confirm("this will create random AND clear the text! do you want to continue?")){
-                document.getElementById("textbox").value="random ...";
+            if(document.getElementById("flag").checked){
+                if(confirm("this will create random AND clear the text! do you want to continue?")){
+                    document.getElementById("textbox").value="random ...";
+                }
             }
+            else {document.getElementById("textbox").value="random ...";}
         }
         function doLoad(){
             let file = document.getElementById("textName").files[0];
@@ -103,7 +111,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.03 from 07-12-2023 21h42");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.04 from 07-12-2023 22h42");
         }
     </script>
 </head>
@@ -112,10 +120,12 @@
         <button onclick="doInfo()">INFO!</button>
         <button onclick="doNew()">new</button>
         <button onclick="doRandom()">random</button>
+        <label for="flag">ask before clear:</label>
+        <input type="checkbox" id="flag" checked>
         <input id="textName" type="file" value="untiteld.txt">
         <!-- <button>save</button> -->
         <button onclick="doLoad()">load</button>
-        <span id="copyright">hTextJS v1.03 (c) hhtg. 2023</span>
+        <span id="copyright">hTextJS v1.04 (c) hhtg. 2023</span>
         <!-- <br> -->
         <button onclick="doDownload()">save/ download</button>
         as:<input id="dName" type="text" value="empty.txt" size="10">
@@ -133,7 +143,7 @@
     <div id="clip">
         clipboard:
         <span id="clipb">
-            empty
+            empty - function still in progress...
         </span>
     </div>
     <!-- <div id="exportField">
