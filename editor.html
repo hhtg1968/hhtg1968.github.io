@@ -14,9 +14,27 @@
             color: #ffffff;
             border: 2px solid #555555;
         }
+        #buttonRow2{
+            font-size: smaller;
+            background-color: #0000ee;
+            color: #ffffff;
+            border: 2px solid #555555;
+        }
+        #cpc464{
+            background-color: #0000ee;
+            color: yellow;
+        }
+        #c64{
+            background-color: #0000ee;
+            color: aqua;
+        }
+        #classical{
+            background-color: #111111;
+            color: #11dd11;
+        }
         #textbox{
-            background-color: #444444;
-            color: #eeeeee;
+            background-color: #111111;
+            color: #11dd11;
             width:99%;
             font-family: monospace;
             font-size: large;
@@ -61,10 +79,20 @@
             let file = document.getElementById("textName").files[0];
             let reader = new FileReader();
             let textArea = document.getElementById("textbox");
-            reader.readAsText(file);
-            reader.addEventListener('load', function() {
-                textArea.value = reader.result;
-            },false);
+            if(document.getElementById("flag").checked){
+                if(confirm("this will load the file AND clear the recent text! do you want to continue?")){
+                    reader.readAsText(file);
+                    reader.addEventListener('load', function() {
+                        textArea.value = reader.result;
+                    },false);
+                }
+            }
+            else {
+                reader.readAsText(file);
+                    reader.addEventListener('load', function() {
+                        textArea.value = reader.result;
+                    },false);
+                }
             }
         function doDownload(){
             let saveText = document.getElementById("textbox");
@@ -89,6 +117,8 @@
             childWindow.document.close();
             childWindow.close();
         }
+        function doEncrypt(){}
+        function doDecrypt(){}
         function doExport(){
             let insert=document.getElementById("textbox").value;
             document.getElementById("exportPreview").innerHTML=insert;
@@ -111,7 +141,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.04 from 07-12-2023 22h42");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.04 from 07-12-2023 22h42 - 8bit style but modern features!");
         }
     </script>
 </head>
@@ -124,21 +154,32 @@
         <input type="checkbox" id="flag" checked>
         <input id="textName" type="file" value="untiteld.txt">
         <!-- <button>save</button> -->
-        <button onclick="doLoad()">load</button>
-        <span id="copyright">hTextJS v1.04 (c) hhtg. 2023</span>
+        <button onclick="doLoad()">(re)load</button>
+        <!-- <span id="copyright">hTextJS v1.04 (c) hhtg. 2023</span> -->
         <!-- <br> -->
-        <button onclick="doDownload()">save/ download</button>
+        <button onclick="doDownload()">save/download</button>
         as:<input id="dName" type="text" value="empty.txt" size="10">
-        <button onclick="printTextBox()">print/ export to PDF...</button>
+        <button onclick="printTextBox()">print/save to PDF...</button>
         <!-- <button onclick="doExport()">export...</button>
         <button onclick="doPreview()">export clipboard ...</button>
         <button onclick="doSelAll()">select all</button>
         <button onclick="doCopy()">copy</button>
         <button>cut</button>
         <button onclick=""doPaste()>paste</button> -->
+        <button onclick="doEncrypt()">KGB-enrypt...</button>
+        <button onclick="doDecrypt()">decrypt...</button>
     </div>
     <div>
         <textarea id="textbox" rows="24" cols="80">empty universe ...</textarea>
+    </div>
+    <div id="buttonRow2">
+        colourset:
+        <button id="cpc464" name="cpc464">amstrad cpc 464</button>
+        <button id="c64">commodore c64</button>
+        <button>sinclair spectrum</button>
+        <!-- <button>commodore PET</button> -->
+        <button id="classical">classical dec/digital terminal</button>
+        function still in progress...
     </div>
     <div id="clip">
         clipboard:
