@@ -14,24 +14,32 @@
             color: #ffffff;
             border: 2px solid #555555;
         }
-        #buttonRow2{
+        #csets{
             font-size: smaller;
             background-color: #0000ee;
             color: #ffffff;
             border: 2px solid #555555;
         }
-        #cpc464{
+        #cpc464,#l464{
             background-color: #0000ee;
             color: yellow;
         }
-        #c64{
+        #c64,#l64{
             background-color: #0000ee;
             color: aqua;
         }
-        #classical{
+        #lzx{
+            background-color: #eeeeee;
+            color: #111111;
+        }
+        #classical,#lcl{
+            background-color: #111111;
+            color: #00ee00;
+        }
+        /* #classical{
             background-color: #111111;
             color: #11dd11;
-        }
+        } */
         #textbox{
             background-color: #111111;
             color: #11dd11;
@@ -172,15 +180,26 @@
     <div>
         <textarea id="textbox" rows="24" cols="80">empty universe ...</textarea>
     </div>
-    <div id="buttonRow2">
+    <div id="csets">
+    colourset:
+    <label for="cpc464" id="l464">amstrad cpc 464</label>
+    <input type="radio" name="cs" id="cpc464">
+    <label for="c64" id="l64">commodore c64</label>
+    <input type="radio" name="cs" id="c64">
+    <label for="spectrum" id="lzx">sinclair zx spectrum</label>
+    <input type="radio" name="cs" id="spectrum">
+    <label for="classical" id="lcl">classical terminal</label>
+    <input type="radio" name="cs" id="classical" checked>
+    </div>
+    <!-- <div id="buttonRow2">
         colourset:
         <button id="cpc464" name="cpc464">amstrad cpc 464</button>
         <button id="c64">commodore c64</button>
         <button>sinclair spectrum</button>
-        <!-- <button>commodore PET</button> -->
+        <button>commodore PET</button>
         <button id="classical">classical dec/digital terminal</button>
         function still in progress...
-    </div>
+    </div> -->
     <div id="clip">
         clipboard:
         <span id="clipb">
