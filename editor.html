@@ -106,7 +106,7 @@
             let saveText = document.getElementById("textbox");
             let fileN = document.getElementById("dName");
             const textData = saveText.value;
-            const textDataBlob = new Blob([saveText.value],{ type: "text/plain" });
+            const textDataBlob = new Blob([saveText.value],{type: "text/plain"});
             const downloadUrl = window.URL.createObjectURL(textDataBlob)
             const downloadLink = document.createElement('a');
             downloadLink.download = fileN.value
@@ -114,7 +114,7 @@
             downloadLink.click();
         }
         function printTextBox() {
-            childWindow = window.open('','childWindow','location=yes, menubar=yes, toolbar=yes');
+            childWindow = window.open('','childWindow','location=yes,menubar=yes,toolbar=yes');
             childWindow.document.open();
             // let n="filename";
             let n=document.getElementById("dName").value;
@@ -149,7 +149,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.04 from 07-12-2023 22h42 - 8bit style but modern features!");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.04 from 08-12-2023 18h42 - 8bit style but modern features!");
         }
     </script>
 </head>
@@ -173,9 +173,9 @@
         <button onclick="doSelAll()">select all</button>
         <button onclick="doCopy()">copy</button>
         <button>cut</button>
-        <button onclick=""doPaste()>paste</button> -->
+        <button onclick=""doPaste()>paste</button>
         <button onclick="doEncrypt()">KGB-enrypt...</button>
-        <button onclick="doDecrypt()">decrypt...</button>
+        <button onclick="doDecrypt()">decrypt...</button> -->
     </div>
     <div>
         <textarea id="textbox" rows="24" cols="80">empty universe ...</textarea>
