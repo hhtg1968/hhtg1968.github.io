@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="javascript editor Heinrich Hubbert" content="javascript, texteditor">
-    <title>HTextJS 1.04 (c) hhtg. 2023</title>
+    <title>HTextJS 1.05 (c) hhtg. 2023</title>
     <style>
         body{
             background-color: #444444;
@@ -139,17 +139,33 @@
             let selection=document.getElementById("textbox").select();        
         }
         function doCopy(){
-                document.getElementById('textbox').addEventListener('click',function(){  
-                    let text = document.getElementById('textA');
-                    text.select();
-                    document.execCommand('copy');
-                })
+                // document.getElementById('textbox').addEventListener('click',function(){  
+                //     let text = document.getElementById('textA');
+                //     text.select();
+                //     document.execCommand('copy');
+                // })
         }
         function doPaste(){
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.04 from 08-12-2023 18h42 - 8bit style but modern features!");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.05 from 08-12-2023 19h10 - 8bit style but modern features!");
+        }
+        function doCPC(){
+            document.getElementById("textbox").style.background="blue";
+            document.getElementById("textbox").style.color="yellow";
+        }
+        function doTerminal(){
+            document.getElementById("textbox").style.background="black";
+            document.getElementById("textbox").style.color="lime";
+        }
+        function doZX(){
+            document.getElementById("textbox").style.background="white";
+            document.getElementById("textbox").style.color="black";
+        }
+        function doC64(){
+            document.getElementById("textbox").style.background="blue";
+            document.getElementById("textbox").style.color="aqua";
         }
     </script>
 </head>
@@ -160,10 +176,11 @@
         <button onclick="doRandom()">random</button>
         <label for="flag">ask before clear:</label>
         <input type="checkbox" id="flag" checked>
-        <input id="textName" type="file" value="untiteld.txt">
+        <input id="textName" type="file" value="untiteld.txt" accept="text/.txt">
         <!-- <button>save</button> -->
         <button onclick="doLoad()">(re)load</button>
-        <!-- <span id="copyright">hTextJS v1.04 (c) hhtg. 2023</span> -->
+        <!-- <span id="copyright">hTextJS v1.05 (c) hhtg. 2023</span> -->
+        <span id="copyright">v1.05</span>
         <!-- <br> -->
         <button onclick="doDownload()">save/download</button>
         as:<input id="dName" type="text" value="empty.txt" size="10">
@@ -183,13 +200,13 @@
     <div id="csets">
     colourset:
     <label for="cpc464" id="l464">amstrad cpc 464</label>
-    <input type="radio" name="cs" id="cpc464">
+    <input type="radio" name="cs" id="cpc464" onclick="doCPC()">
     <label for="c64" id="l64">commodore c64</label>
-    <input type="radio" name="cs" id="c64">
+    <input type="radio" name="cs" id="c64" onclick="doC64()">
     <label for="spectrum" id="lzx">sinclair zx spectrum</label>
-    <input type="radio" name="cs" id="spectrum">
+    <input type="radio" name="cs" id="spectrum" onclick="doZX()">
     <label for="classical" id="lcl">classical terminal</label>
-    <input type="radio" name="cs" id="classical" checked>
+    <input type="radio" name="cs" id="classical" onclick="doTerminal()" checked>
     </div>
     <!-- <div id="buttonRow2">
         colourset:
