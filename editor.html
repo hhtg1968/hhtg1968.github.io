@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="javascript editor Heinrich Hubbert" content="javascript, texteditor">
-    <title>HTextJS 1.05 (c) hhtg. 2023</title>
+    <title>HTextJS 1.06 (c) hhtg. 2023</title>
     <style>
         body{
             background-color: #444444;
@@ -36,15 +36,11 @@
             background-color: #111111;
             color: #00ee00;
         }
-        /* #classical{
-            background-color: #111111;
-            color: #11dd11;
-        } */
         #textbox{
             background-color: #111111;
             color: #11dd11;
             width:99%;
-            font-family: monospace;
+            font-family: "Courier New",monospace;
             font-size: large;
         }
         #dName{
@@ -60,6 +56,18 @@
             background-color: #dd0000;
             color: #eeeeee;
             border: 2px solid #555555
+        }
+        #cfont{
+            float: right;
+        }
+        #courier,#lcourier{
+            font-family: 'Courier New',monospace;
+        }
+        #helvetica,#lhelvetica{
+            font-family: Helvetica,sans-serif;
+        }
+        #times,#ltimes{
+            font-family: Times, serif;
         }
         #copyright{
             float: right;
@@ -116,7 +124,6 @@
         function printTextBox() {
             childWindow = window.open('','childWindow','location=yes,menubar=yes,toolbar=yes');
             childWindow.document.open();
-            // let n="filename";
             let n=document.getElementById("dName").value;
             childWindow.document.write('<html><head><title>'+n+'</title></head><body>');
             childWindow.document.write(document.getElementById('textbox').value.replace(/\n/gi,'<br>'));
@@ -149,7 +156,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.05 from 08-12-2023 19h10 - 8bit style but modern features!");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.06 from 10-12-2023 10h37 - 8bit style but modern features!");
         }
         function doCPC(){
             document.getElementById("textbox").style.background="blue";
@@ -167,6 +174,18 @@
             document.getElementById("textbox").style.background="blue";
             document.getElementById("textbox").style.color="aqua";
         }
+        function doCourier(){
+            document.getElementById("textbox").style.fontFamily='Courier,monospace';;
+        }
+        function doHelvetica(){
+            document.getElementById("textbox").style.fontFamily='Helvetica,sans-serif';
+        }
+        function doTimes(){
+            document.getElementById("textbox").style.fontFamily='Times,serif';
+        }
+        function doMonaco(){
+            document.getElementById("textbox").style.fontFamily='Monaco,monospace';
+        }
     </script>
 </head>
 <body>
@@ -180,7 +199,7 @@
         <!-- <button>save</button> -->
         <button onclick="doLoad()">(re)load</button>
         <!-- <span id="copyright">hTextJS v1.05 (c) hhtg. 2023</span> -->
-        <span id="copyright">v1.05</span>
+        <span id="copyright">v1.06</span>
         <!-- <br> -->
         <button onclick="doDownload()">save/download</button>
         as:<input id="dName" type="text" value="empty.txt" size="10">
@@ -207,27 +226,24 @@
     <input type="radio" name="cs" id="spectrum" onclick="doZX()">
     <label for="classical" id="lcl">classical terminal</label>
     <input type="radio" name="cs" id="classical" onclick="doTerminal()" checked>
+        <span id="cFont">
+        font:
+        <label for="courier" id="lcourier">courier</label>
+        <input type="radio" name="chooseF" id="courier" onclick="doCourier()" checked>
+        <label for="helvetica" id="lhelvetica">helvetica</label>
+        <input type="radio" name="chooseF" id="helvetica" onclick="doHelvetica()">
+        <label for="times" id="ltimes">times</label>
+        <input type="radio" name="chooseF" id="times" onclick="doTimes()">
+        <label for="monaco" id="lmonaco">monaco</label>
+        <input type="radio" name="chooseF" id="monaco" onclick="doMonaco()">
+        </span>
+    <button>smaller-</button>
+    <button>bigger+</button>
     </div>
-    <!-- <div id="buttonRow2">
-        colourset:
-        <button id="cpc464" name="cpc464">amstrad cpc 464</button>
-        <button id="c64">commodore c64</button>
-        <button>sinclair spectrum</button>
-        <button>commodore PET</button>
-        <button id="classical">classical dec/digital terminal</button>
-        function still in progress...
-    </div> -->
     <div id="clip">
         clipboard:
         <span id="clipb">
             empty - function still in progress...
-        </span>
     </div>
-    <!-- <div id="exportField">
-        export area:
-        <span id="exportPreview">
-            empty
-        </span>
-    </div> -->
 </body>
 </html>
