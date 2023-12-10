@@ -96,7 +96,7 @@
             let reader = new FileReader();
             let textArea = document.getElementById("textbox");
             if(document.getElementById("flag").checked){
-                if(confirm("this will load the file AND clear the recent text! do you want to continue?")){
+                if(confirm("this will load a file AND clear the recent text! do you want to continue?")){
                     reader.readAsText(file);
                     reader.addEventListener('load', function() {
                         textArea.value = reader.result;
@@ -156,7 +156,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.06 from 10-12-2023 10h37 - 8bit style but modern features!");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.06 from 10-12-2023 11h47 - 8bit style but modern features!");
         }
         function doCPC(){
             document.getElementById("textbox").style.background="blue";
@@ -195,7 +195,9 @@
         <button onclick="doRandom()">random</button>
         <label for="flag">ask before clear:</label>
         <input type="checkbox" id="flag" checked>
-        <input id="textName" type="file" value="untiteld.txt" accept="text/.txt">
+        <!-- <label for="textname">open file...</label> -->
+        <input id="textName" type="file" value="untiteld.txt" oninput="doLoad()" hidden>
+        <button onclick="document.getElementById('textName').click()">open file...</button>
         <!-- <button>save</button> -->
         <button onclick="doLoad()">(re)load</button>
         <!-- <span id="copyright">hTextJS v1.05 (c) hhtg. 2023</span> -->
@@ -244,6 +246,7 @@
         clipboard:
         <span id="clipb">
             empty - function still in progress...
+        </span>
     </div>
 </body>
 </html>
