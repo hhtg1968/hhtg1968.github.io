@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KGBcryptJS1 v1 10-12-2023 19h52 (c) hhtg. 2023</title>
+    <script>
+        function createKey(){
+            let l=document.getElementById("source").value.length;
+            let k="";
+            let n,x;
+            for(n=0;n<l;n++){
+                x=Math.random()*128;
+                k+=String.fromCharCode(x);
+            }
+            document.getElementById("key").value=k;
+        }
+        function doEncrypt(){
+            createKey();
+            let l=document.getElementById("source").value.length;
+            let s=document.getElementById("source").value;
+            let keyx=document.getElementById("key").value;
+            let k="";
+            let n,c1,c2,x="",y="";
+            for(n=0;n<l;n++){
+                x=s.substring(n,n+1);
+                c1=x.charCodeAt(0);
+                y=keyx.substring(n,n+1);
+                c2=y.charCodeAt(0);
+                c1=c1^c2;
+                k+=String.fromCharCode(c1);
+            }
+            document.getElementById("dest").value=k;
+        }
+        function doDecrypt(){
+            let l=document.getElementById("dest").value.length;
+            let s=document.getElementById("dest").value;
+            let keyx=document.getElementById("key").value;
+            let k="";
+            let n,c,x="",y="";
+            for(n=0;n<l;n++){
+                x=s.substring(n,n+1);
+                c1=x.charCodeAt(0);
+                y=keyx.substring(n,n+1);
+                c2=y.charCodeAt(0);
+                c1=c1^c2;
+                k+=String.fromCharCode(c1);
+            }
+            document.getElementById("dest2").value=k;
+        }
+    </script>
+</head>
+<body>
+    <!-- <label for="keyL">length of key:</label>
+    <input id="keyL" type="number" value="16"> -->
+    KGB encryption! not to decrypt without key!
+    <br>
+    <button onclick="createKey()">create key</button>
+    <button onclick="doEncrypt()">encrypt</button>
+    <button onclick="doDecrypt()">decrypt</button>
+    <br>
+    <label for="key">key:</label>
+    <br>
+    <textarea id="key" type="textarea" cols="64" rows="8"></textarea><br>
+    <label for="source">source:</label>
+    <br>
+    <textarea id="source" type="textarea" cols="64" rows="8"></textarea><br>
+    <label for="dest">encrypted:</label>
+    <br>
+    <textarea id="dest" type="textarea" cols="64" rows="8"></textarea><br>
+    <label for="dest2">decrypted:</label>
+    <br>
+    <textarea id="dest2" type="textarea" cols="64" rows="8"></textarea>
+</body>
+</html>
