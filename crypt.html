@@ -3,14 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KGBcryptJS1 v1 10-12-2023 19h52 (c) hhtg. 2023</title>
+    <title>KGBcryptJS1 v1 10-12-2023 22h27 (c) hhtg. 2023</title>
+    <style>
+        body{
+            background-color: #444444;
+            color: #dddddd;
+        }
+        #link{
+            background-color: #222222;
+            color: aqua;
+        }
+        #source{
+            background-color: #222222;
+            color: #dddddd;
+        }
+        #dest{
+            background-color: #222222;
+            color: #ee0000;
+        }
+        #dest2{
+            background-color: #222222;
+            color: #11dd11;
+        }
+    </style>
     <script>
+        var cryptoRange=64;
+        var cryptoStart=33;
         function createKey(){
             let l=document.getElementById("source").value.length;
             let k="";
             let n,x;
             for(n=0;n<l;n++){
-                x=Math.random()*128;
+                x=cryptoStart+Math.random()*cryptoRange;
                 k+=String.fromCharCode(x);
             }
             document.getElementById("key").value=k;
@@ -48,28 +72,34 @@
             }
             document.getElementById("dest2").value=k;
         }
+        function doInfo(){
+            alert("bei der One-Pad-Verschlüsselung ist der Schlüssel so lang wie der Text. Wenn man wirkliche Zufallszahlen unterstellt, ist er nicht zu knacken...")
+        }
     </script>
 </head>
 <body>
     <!-- <label for="keyL">length of key:</label>
     <input id="keyL" type="number" value="16"> -->
-    KGB encryption! not to decrypt without key!
+    KGB encryption v1.0! not to decrypt without key!
+    <a href="https://de.wikipedia.org/wiki/One-Time-Pad" id="link">wikipedia-link</a>
     <br>
-    <button onclick="createKey()">create key</button>
+    <!-- <button onclick="createKey()">create key</button> -->
     <button onclick="doEncrypt()">encrypt</button>
     <button onclick="doDecrypt()">decrypt</button>
     <br>
+    <label for="source">source:</label><br>
+    <textarea id="source" type="textarea" cols="64" rows="8"></textarea><br>
     <label for="key">key:</label>
     <br>
     <textarea id="key" type="textarea" cols="64" rows="8"></textarea><br>
-    <label for="source">source:</label>
     <br>
-    <textarea id="source" type="textarea" cols="64" rows="8"></textarea><br>
     <label for="dest">encrypted:</label>
     <br>
     <textarea id="dest" type="textarea" cols="64" rows="8"></textarea><br>
     <label for="dest2">decrypted:</label>
     <br>
     <textarea id="dest2" type="textarea" cols="64" rows="8"></textarea>
+    <br>
+    <button onclick="doInfo()">INFO!</button>
 </body>
 </html>
