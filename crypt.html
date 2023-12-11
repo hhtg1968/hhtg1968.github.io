@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KGBcryptJS1 v1 10-12-2023 22h27 (c) hhtg. 2023</title>
+    <title>KGBcryptJS1 v1.01 11-12-2023 10h27 (c) hhtg. 2023</title>
     <style>
         body{
             background-color: #444444;
@@ -40,21 +40,26 @@
             document.getElementById("key").value=k;
         }
         function doEncrypt(){
-            createKey();
+            // createKey();
             let l=document.getElementById("source").value.length;
             let s=document.getElementById("source").value;
             let keyx=document.getElementById("key").value;
-            let k="";
-            let n,c1,c2,x="",y="";
-            for(n=0;n<l;n++){
-                x=s.substring(n,n+1);
-                c1=x.charCodeAt(0);
-                y=keyx.substring(n,n+1);
-                c2=y.charCodeAt(0);
-                c1=c1^c2;
-                k+=String.fromCharCode(c1);
-            }
-            document.getElementById("dest").value=k;
+            if((l!=keyx.length)||(l==0)){
+                    alert("no usable key - please create one!");
+                }
+            else{
+                let k="";
+                let n,c1,c2,x="",y="";
+                for(n=0;n<l;n++){
+                    x=s.substring(n,n+1);
+                    c1=x.charCodeAt(0);
+                    y=keyx.substring(n,n+1);
+                    c2=y.charCodeAt(0);
+                    c1=c1^c2;
+                    k+=String.fromCharCode(c1);
+                }
+                document.getElementById("dest").value=k;
+                }
         }
         function doDecrypt(){
             let l=document.getElementById("dest").value.length;
@@ -80,10 +85,10 @@
 <body>
     <!-- <label for="keyL">length of key:</label>
     <input id="keyL" type="number" value="16"> -->
-    KGB encryption v1.0! not to decrypt without key!
+    KGB encryption v1.01! not to decrypt without key!
     <a href="https://de.wikipedia.org/wiki/One-Time-Pad" id="link">wikipedia-link</a>
     <br>
-    <!-- <button onclick="createKey()">create key</button> -->
+    <button onclick="createKey()">create key</button>
     <button onclick="doEncrypt()">encrypt</button>
     <button onclick="doDecrypt()">decrypt</button>
     <br>
