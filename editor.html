@@ -2,8 +2,11 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="javascript editor Heinrich Hubbert" content="javascript, texteditor">
-    <title>HTextJS 1.06 (c) hhtg. 2023</title>
+    <meta name="description" content="free javascript texteditor">
+    <!-- <meta name="keywords" content="HTML, CSS, JavaScript"> -->
+    <meta name="author" content="Heinrich Hubbert - hhtg.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTextJS 1.08 (c) hhtg. 2023</title>
     <style>
         body{
             background-color: #444444;
@@ -74,22 +77,43 @@
         }
     </style>
     <script defer="true">
+        function setFlag(){
+            document.getElementById("flag").checked=true;
+        }
+        function clearFlag(){
+            document.getElementById("flag").checked=false;
+        }
         function doNew(){
             if(document.getElementById("flag").checked){
                 if(confirm("do you really want to clear the text?")){
-                    document.getElementById("textbox").value="";}
+                    document.getElementById("textbox").value="";
+                    clearFlag();
+                }
             }
             else {
                 document.getElementById("textbox").value="";
+                clearFlag();
             }
+        }
+        function createRandom(){
+            document.getElementById("textbox").value="";
+            let l=8*1024*Math.random();
+            let n,c,k="";
+            for(n=0;n<l;n++){
+                c=32+Math.random()*95;
+                k+=String.fromCharCode(c);
+            }
+            document.getElementById("textbox").value=k;
+            setFlag();
         }
         function doRandom(){
             if(document.getElementById("flag").checked){
-                if(confirm("this will create random AND clear the text! do you want to continue?")){
-                    document.getElementById("textbox").value="random ...";
+                if(confirm("this will create text random AND clear the text before! do you want to continue?")){
+                    // document.getElementById("textbox").value="random ...";
+                    createRandom();
                 }
             }
-            else {document.getElementById("textbox").value="random ...";}
+            else {createRandom();}
         }
         function doLoad(){
             let file = document.getElementById("textName").files[0];
@@ -101,6 +125,7 @@
                     reader.addEventListener('load', function() {
                         textArea.value = reader.result;
                     },false);
+                    clearFlag();
                 }
             }
             else {
@@ -108,6 +133,7 @@
                     reader.addEventListener('load', function() {
                         textArea.value = reader.result;
                     },false);
+                    clearFlag();
                 }
             }
         function doDownload(){
@@ -132,12 +158,12 @@
             childWindow.document.close();
             childWindow.close();
         }
-        function doEncrypt(){}
-        function doDecrypt(){}
-        function doExport(){
-            let insert=document.getElementById("textbox").value;
-            document.getElementById("exportPreview").innerHTML=insert;
-        }
+        // function doEncrypt(){}
+        // function doDecrypt(){}
+        // function doExport(){
+        //     let insert=document.getElementById("textbox").value;
+        //     document.getElementById("exportPreview").innerHTML=insert;
+        // }
         function doPreview(){
             let insert="clipboard to come in future ..."
             document.getElementById("exportPreview").innerHTML=insert;
@@ -156,7 +182,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.06 from 10-12-2023 11h47 - 8bit style but modern features!");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.08 from 11-12-2023 08h49 - 8bit style but modern features!");
         }
         function doCPC(){
             document.getElementById("textbox").style.background="blue";
@@ -193,30 +219,30 @@
         <button onclick="doInfo()">INFO!</button>
         <button onclick="doNew()">new</button>
         <button onclick="doRandom()">random</button>
-        <label for="flag">ask before clear:</label>
-        <input type="checkbox" id="flag" checked>
+        <label for="flag">text changed:</label>
+        <input type="checkbox" id="flag" unchecked>
         <!-- <label for="textname">open file...</label> -->
         <input id="textName" type="file" value="untiteld.txt" oninput="doLoad()" hidden>
         <button onclick="document.getElementById('textName').click()">open file...</button>
         <!-- <button>save</button> -->
         <button onclick="doLoad()">(re)load</button>
         <!-- <span id="copyright">hTextJS v1.05 (c) hhtg. 2023</span> -->
-        <span id="copyright">v1.06</span>
+        <span id="copyright">v1.08</span>
         <!-- <br> -->
         <button onclick="doDownload()">save/download</button>
-        as:<input id="dName" type="text" value="empty.txt" size="10">
+        as:<input id="dName" type="text" value="h-edit-js.txt" size="10">
         <button onclick="printTextBox()">print/save to PDF...</button>
-        <!-- <button onclick="doExport()">export...</button>
-        <button onclick="doPreview()">export clipboard ...</button>
+        <button onclick="doExport()">export...</button>
+        <!-- <button onclick="doPreview()">export clipboard ...</button> -->
         <button onclick="doSelAll()">select all</button>
-        <button onclick="doCopy()">copy</button>
+        <!-- <button onclick="doCopy()">copy</button>
         <button>cut</button>
-        <button onclick=""doPaste()>paste</button> -->
+        <button onclick=""doPaste()>paste</button>
         <button onclick="doEncrypt()">KGB-enrypt...</button>
-        <button onclick="doDecrypt()">decrypt...</button>
+        <button onclick="doDecrypt()">decrypt...</button> -->
     </div>
     <div>
-        <textarea id="textbox" rows="24" cols="80">empty universe ...</textarea>
+        <textarea id="textbox" onchange="setFlag()" rows="24" cols="80">empty universe ...</textarea>
     </div>
     <div id="csets">
     colourset:
