@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hEditJS2 (c) hhtg. 2023</title>
+  <style>
+    #editor {
+      width: 99%;
+      height: 400px;
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin-bottom: 10px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+    <button onclick="doInfo()">INFO!</button>
+    <label for="flag">text changed:</label>
+    <input type="checkbox" id="flag" unchecked>
+  <button onclick="loadText()">Load</button>
+  <input id="textName" type="file" value="untiteld.txt" oninput="doLoad()" hidden>
+  <button onclick="document.getElementById('textName').click()">open file...</button>
+  <button onclick="printText()">Print</button>
+  <button onclick="downloadText()">Download</button>
+  as:
+  <input id="dName" type="text" value="h-edit-js.txt" size="10">
+  <label for="fontStyle">font:</label>
+  <select id="fontStyle" onchange="changeFontStyle()">
+    <option value="Arial">Arial</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Courier New">Courier New</option>
+    <option value="Verdana">Verdana</option>
+  </select>
+  <label for="fontSize">size:</label>
+  <select id="fontSize" onchange="changeFontSize()">
+    <option value="12px">12</option>
+    <option value="14px">14</option>
+    <option value="16px">16</option>
+    <option value="18px">18</option>
+  </select>
+  <br><br>
+  <div id="editor" contenteditable="true" onchange="setFlag()"></div>
+  <br>
+  <script>
+    let infotext="hEditJSv2 v2.0 (c) hhtg. 23-12-2023 11h57";
+    document.getElementById("flag").value=true;
+    function doInfo(){
+        alert(infotext);
+    }
+
+    function setFlag(){
+            document.getElementById("flag").checked=true;
+        }
+
+    function clearFlag(){
+            document.getElementById("flag").checked=false;
+        }
+
+    function loadText() {
+      // For simplicity, you can hardcode or fetch text content here.
+      var exampleText = "This is some <b>sample text</b> loaded into the editor.";
+      document.getElementById('editor').innerHTML = exampleText;
+    }
+
+    function doLoad(){
+            let file = document.getElementById("textName").files[0];
+            let reader = new FileReader();
+            let textArea = document.getElementById("editor");
+            if(document.getElementById("flag").checked){
+                if(confirm("this will load a file AND clear the recent text! do you want to continue?")){
+                    reader.readAsText(file);
+                    reader.addEventListener('load', function() {
+                        textArea.innerHTML = reader.result;
+                    },false);
+                    clearFlag();
+                }
+            }
+            else {
+                    reader.readAsText(file);
+                    reader.addEventListener('load', function() {
+                        textArea.innerHTML = reader.result;
+                    },false);
+                    clearFlag();
+                }
+            }
+    
+    function printText() {
+      var htmlContent = document.getElementById('editor').innerHTML;
+      console.log(htmlContent);
+
+        childWindow=window.open('','childWindow','location=yes,menubar=yes,toolbar=yes');
+        childWindow.document.open();
+
+        // let n=document.getElementById("dName").value;
+        // childWindow.document.write('<html><head><title>'+n+'</title></head><body>');
+        // childWindow.document.write(document.getElementById('editor').value.replace(/\n/gi,'<br>'));
+        // childWindow.document.write('</body></html>');
+
+        childWindow.document.write(document.getElementById('editor').innerHTML);
+        childWindow.print();
+        childWindow.document.close();
+        childWindow.close();
+    }
+
+    function downloadText() {
+      var htmlContent = document.getElementById('editor').innerHTML;
+      var blob = new Blob([htmlContent], { type: 'text/html' });
+
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      //a.download = 'document.html';
+      a.download=document.getElementById("dName").value
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function changeFontStyle() {
+      var selectedFont = document.getElementById('fontStyle').value;
+      document.getElementById('editor').style.fontFamily = selectedFont;
+    }
+
+    function changeFontSize() {
+      var selectedSize = document.getElementById('fontSize').value;
+      document.getElementById('editor').style.fontSize = selectedSize;
+    }
+  </script>
+
+</body>
+</html>
