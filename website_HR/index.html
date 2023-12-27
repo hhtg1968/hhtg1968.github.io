@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
-    <!-- programmed by hHubbert2023 v1 27-12-2023 16h44 -->
+    <!-- programmed by hHubbert2023 v1 27-12-2023 18h44 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,6 +92,19 @@
             /* text-decoration: none; */
         }
     </style>
+    <script>
+        let iNr=0;
+        let v;
+        setInterval(change,5000);
+        function change(){
+            iNr++;
+            v=iNr.toString();
+            v="images/erstesBild"+v+".jpg";
+            document.getElementById("eB").src=v;
+            console.log(v);
+            if(iNr==8){iNr=0;}
+        }
+    </script>
 </head>
 <body>
     <div id="oben">

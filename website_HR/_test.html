@@ -4,8 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
+    <script>
+        let iNr=0;
+        let v;
+        setInterval(change,1000);
+        function change(){
+            iNr++;
+            v=iNr.toString();
+            v="images/erstesBild"+v+".jpg";
+            document.getElementById("eB").src=v;
+            console.log(v);
+            if(iNr==8){iNr=0;}
+        }
+    </script>
 </head>
 <body>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2514.903847507176!2d8.0133305761814!3d50.92549565304673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bc03180ad499a3%3A0xfd9a7c587eac87d1!2sSetzer%20Str.%208%2C%2057223%20Kreuztal!5e0!3m2!1sde!2sde!4v1703690253373!5m2!1sde!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <img id="eB" src="images/erstesBild1.jpg">    
 </body>
 </html>
