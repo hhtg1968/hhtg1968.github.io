@@ -10,10 +10,20 @@
             background-size: 100%;
         }
     </style>
+        <script>
+            let w=1;
+            function doChange(){
+                let s="";
+                if(w==0){w=1;s="1";} else {w=0;s="2";}
+                console.log(w,s);
+                document.body.style.backgroundImage='url("images/arbeitszimmer'+s+'.jpeg")';
+            }
+        </script>
 </head>
 <body>
     <h2>Arbeitszimmer</h2>
     <button onclick="window.location.href='flur-u.html'">Flur</button>
     <button onclick="window.location.href='schlafzimmer.html'">Schlafzimmer</button>
+    <button onclick="doChange()">weiteres Bild</button>
 </body>
 </html>

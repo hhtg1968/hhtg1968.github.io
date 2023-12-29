@@ -10,6 +10,15 @@
             background-size: 100%;
         }
     </style>
+        <script>
+            let w=1;
+            function doChange(){
+                let s="";
+                if(w==0){w=1;s="1";} else {w=0;s="2";}
+                console.log(w,s);
+                document.body.style.backgroundImage='url("images/flur-o'+s+'.jpeg")';
+            }
+        </script>
 </head>
 <body>
     <h2>Flur oben - Eingangsbereich</h2>
@@ -20,5 +29,6 @@
     <button onclick="window.location.href='kueche.html'">Küche</button>
     <button onclick="window.location.href='klaraszimmer.html'">Klaras Zimmer</button>
     <button onclick="window.location.href='flur-u.html'">Flur unten</button>
+    <button onclick="doChange()">weiteres Bild</button>
 </body>
 </html>

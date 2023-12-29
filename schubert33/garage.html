@@ -10,11 +10,21 @@
             background-size: 100%;
         }
     </style>
+        <script>
+            let w=1;
+            function doChange(){
+                let s="";
+                if(w==0){w=1;s="1";} else {w=0;s="2";}
+                console.log(w,s);
+                document.body.style.backgroundImage='url("images/garage'+s+'.jpeg")';
+            }
+        </script>
 </head>
 <body>
     <h2>Garage</h2>
-    <button onclick="window.location.href='heizungskeller.html'">Heitungskeller</button>
+    <button onclick="window.location.href='heizungskeller.html'">Heizungskeller</button>
     <button onclick="window.location.href='vdH.html'">vor das Haus</button>
     <button onclick="window.location.href='terasse.html'">Terasse</button>
+    <button onclick="doChange()">weiteres Bild</button>
 </body>
 </html>

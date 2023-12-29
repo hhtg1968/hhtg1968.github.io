@@ -10,6 +10,15 @@
             background-size: 100%;
         }
     </style>
+        <script>
+            let w=1;
+            function doChange(){
+                let s="";
+                if(w==0){w=1;s="1";} else {w=0;s="2";}
+                console.log(w,s);
+                document.body.style.backgroundImage='url("images/terasse'+s+'.jpeg")';
+            }
+        </script>
 </head>
 <body>
     <h2>Terasse</h2>
@@ -17,5 +26,6 @@
     <button onclick="window.location.href='garage.html'">Garage</button>
     <button onclick="window.location.href='garten.html'">Garten</button>
     <button onclick="window.location.href='index.html'">Westerntür</button>
+    <button onclick="doChange()">weiteres Bild</button>
 </body>
 </html>
