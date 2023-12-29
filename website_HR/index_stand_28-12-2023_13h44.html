@@ -9,10 +9,9 @@
         body{
             /* background-color: #eeeeff; */
             background-color: #333333;
-            color: white;
+            color: #bbbbbb;
             padding: 2px;
             font-family: Arial, Helvetica, sans-serif;
-            background-image: url("images/back0.jpg");
         }
         h1{
             font-size: 400%;
@@ -25,10 +24,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            /* background-image: url("images/henkel-logo.png");
-            background-position: center center;
-            background-size: contain; */
         }
         #logo1{
             width: 40%;
@@ -42,9 +37,9 @@
             background-color: black;
             /* text-decoration: none; */
         }
-        /* #erstesBild{
+        #erstesBild{
             display: grid;
-        } */
+        }
         #unterText{
             display: flex;   justify-content: center;   align-items: center;
             padding: 4px;
@@ -59,10 +54,7 @@
         }
         #erstesBild{
             width: auto;
-            /* display: flex; */
-            object-fit: cover;
-            object-position: top center;
-            height: 188px;
+            display: flex;
         }
         #eB{
             /* object-fit: contain; */
@@ -86,19 +78,12 @@
         #imprM{
             width: 255px;
         }
-        #aSkizze{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 12px;
-        }
         .bildAllg{
             display: block;
             margin-left: auto;
             margin-right: auto;
-            /* padding: 12px; */
+            padding: 12px;
             width: 60%;
-            box-shadow: 10px 10px 10px #222222;
         }
         .fuss2{
             padding: 6px;
@@ -110,28 +95,24 @@
     </style>
     <script>
         let iNr=0;
-        let iLim=5;
         setInterval(change,5000);
         function change(){
             iNr++;
             let v=iNr.toString();
             v="images/erstesBild"+v+".jpg";
-            //v="images/back"+v+".png";
             document.getElementById("eB").src=v;
-            if(iNr==iLim){iNr=0;}
+            if(iNr==8){iNr=0;}
         }
     </script>
 </head>
 <body>
-    <div id="oben">
-        <img src="images/henkel-logo.png" id="logo1">
-    </div>
     <!-- <div id="oben">
+        <img src="images/henkel-logo.png" id="logo1">
+    </div> -->
     <h1>Henkel
         <br>
         Rohrschlangen
     </h1>
-    </div> -->
     <br>
     <div id="menueleiste">
     <span id="prod" class="menu"><a href="#produkte">Produkte</a></span>
@@ -497,7 +478,7 @@
     <br><br>
     <h2 id="anfahrt">Anfahrtskizze:</h2>
     <br>
-    <iframe id="aSkizze" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2514.903847507176!2d8.0133305761814!3d50.92549565304673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bc03180ad499a3%3A0xfd9a7c587eac87d1!2sSetzer%20Str.%208%2C%2057223%20Kreuztal!5e0!3m2!1sde!2sde!4v1703690253373!5m2!1sde!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2514.903847507176!2d8.0133305761814!3d50.92549565304673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bc03180ad499a3%3A0xfd9a7c587eac87d1!2sSetzer%20Str.%208%2C%2057223%20Kreuztal!5e0!3m2!1sde!2sde!4v1703690253373!5m2!1sde!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <br><br>
     <div id="sep2">
     </div>
