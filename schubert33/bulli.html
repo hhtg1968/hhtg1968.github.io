@@ -10,6 +10,16 @@
             background-size: 100%;
         }
     </style>
+        <script>
+            let w=1;
+            function doChange(){
+                let s="";
+                if(w==0){w=1;s="1";} else {w=0;s="2";}
+                console.log(w,s);
+                document.body.style.backgroundImage='url("images/bulli'+s+'.jpeg")';
+            }
+        </script>
+</head>
 </head>
 </head>
 <body>
@@ -18,5 +28,6 @@
     <button onclick="window.location.href='huensborn.html'">nach Hünsborn</button>
     <button onclick="window.location.href='freudenberg.html'">nach Freudenberg</button>
     <button onclick="window.location.href='korsvegen.html'">nach Korsvegen!</button>
+    <button onclick="doChange()">weiteres Bild</button>
 </body>
 </html>
