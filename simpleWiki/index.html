@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simpleWiki</title>
+    <script>
+        function doNewEntry(){
+            childWindow=window.open('','childWindow','location=yes,menubar=yes,toolbar=yes');
+            childWindow.document.open();
+            childWindow.document.write('<html><head><title>Neuer Eintrag</title></head><body>');
+            childWindow.document.write('Neuer Eintrag:<br><br>');
+            childWindow.document.write('<label for="new">Name des Eintrags: </label><input id ="new" type="text"><br><br>');
+            childWindow.document.write('<textarea id="newEntry" rows="32" cols="80">Inhalt des Eintrags...</textarea>');
+            childWindow.document.write('<br><br><button>NICHT speichern</button>');
+            childWindow.document.write('<br><br><button>Eintrag übernehmen</button>');
+            childWindow.document.write('</body></html>');
+            // childWindow.document.close();
+            // childWindow.close();
+        }
+    </script>
+</head>
+<body>
+    simpleWiki v1.0 (c) hhtg. 2024
+    <br>
+    <h1>Hauptseite</h1>
+    <br>
+    <label for="suchfeld">Suche: </label>
+    <input id="suchfeld" type="text">
+    <br>
+    <br>
+    <button onclick="doNewEntry()">neuer Eintrag</button>
+    <br>
+    <br>
+    Anzahl der bisherigen Einträge:
+</body>
+</html>
