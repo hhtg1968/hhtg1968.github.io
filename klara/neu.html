@@ -1,0 +1,108 @@
+<html lang="de">
+<head>
+    <title>Klurs</title>
+    <meta charset="UTF-8">
+<style>
+    body{
+        background-color: black;
+        color: aliceblue;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    img{
+        width: 50%;
+    }
+    h1{
+        color: #ff00ff;
+    }
+    h2{
+        color: aqua;
+    }
+    #bereich1{
+        background-color: aliceblue;
+        color: black;
+    }
+    #bereich2{
+        font-family: 'Times New Roman', Times, serif;
+        color: blueviolet;
+    }
+    #Knopf{
+        color: #ff00ff;
+    }
+    #Knopf:hover{
+        background-color: brown;
+    }
+    .US{
+        color: rgba(23, 91, 65, 0.689);
+    }
+    /* .US:hover{
+        background-color: rgba(82, 106, 35, 0.641);
+    } */
+</style>
+<script>
+    let w=1;
+function execute(){
+    document.getElementById("text1").innerHTML= " ";
+    console.log("Knopf gedrückt");
+   
+}
+function deleter(){
+    document.getElementById("ef").value="gelöscht";
+}
+function nextr(){
+    if(w==1){
+        document.getElementById("g").src="bild2.png";
+        w=2;
+    }
+    else{
+        document.getElementById("g").src="bild.png";
+        w=1;
+    }
+}
+</script>
+</head>
+<body>
+    <h1>
+        internetseite
+    </h1>
+    <h2 class="US">
+        von klara
+    </h2>
+    <h2>
+        2024
+    </h2>
+    <img src="bild.png" alt="" id="g">
+    <button onclick="nextr()">
+        next
+    </button>
+    <br>
+    klara
+    <br>
+    <a href="http://www.google.de"> google </a>
+    <br>
+    <input type="text" value="eingabe" id="ef">
+    <button id="knopf2" onclick="deleter()">
+        delete
+    </button>
+    <br>
+    <br>
+    <h2 class="US">
+        mitte der Seite
+    </h2>
+    <div id="bereich1">
+        <label id="text1">
+            paul
+        </label>
+    </div>
+    <div id="bereich2">
+        mama
+    </div>
+    <button id="Knopf" onclick="execute()">
+        clickmich
+    </button>
+    <h2 class="US">
+        ende der Seite
+    </h2>
+    
+    
+</body>
+</html>
