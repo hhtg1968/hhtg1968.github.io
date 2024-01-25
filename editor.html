@@ -3,11 +3,11 @@
     <!-- to do: warn before leave window/page; encrypt/ decrypt must be better ... -->
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="free javascript texteditor">
+    <meta name="description" content="free javascript texteditor one-pad-encryption">
     <!-- <meta name="keywords" content="HTML, CSS, JavaScript"> -->
     <meta name="author" content="Heinrich Hubbert - hhtg.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTextJS 1.09 (c) hhtg. 2023</title>
+    <title>HTextJS 1.10 (c) hhtg. 2023 and 2024</title>
     <style>
         body{
             background-color: #444444;
@@ -78,14 +78,19 @@
         }
     </style>
     <script defer="true">
-        var cryptoRange=64;
-        var cryptoStart=33;
+        var cryptoRange=94;
+        var cryptoStart=32;
+        var charRange=64;
         var k="";
         function setFlag(){
             document.getElementById("flag").checked=true;
+            window.onbeforeunload=function() {
+                return ""; // 'Do you want to leave?';
+            }
         }
         function clearFlag(){
             document.getElementById("flag").checked=false;
+            window.onbeforeunload=null;
         }
         function doNew(){
             if(document.getElementById("flag").checked){
@@ -101,10 +106,17 @@
         }
         function createRandom(){
             document.getElementById("textbox").value="";
-            let l=8*1024*Math.random();
-            let n,c,k="";
+            let l=4*1024*Math.random();
+            let n,c,k="",wl=16;
             for(n=0;n<l;n++){
-                c=32+Math.random()*95;
+                c=65+Math.random()*charRange;
+                if(c<32){c=32}
+                if(c>126){c=126}
+                if(n%wl==0){
+                    c=32;
+                    wl=parseInt(16*Math.random());
+                    console.log(n,wl);
+                }
                 k+=String.fromCharCode(c);
             }
             document.getElementById("textbox").value=k;
@@ -152,7 +164,7 @@
             downloadLink.click();
         }
         function printTextBox() {
-            childWindow = window.open('','childWindow','location=yes,menubar=yes,toolbar=yes');
+            childWindow=window.open('','childWindow','location=yes,menubar=yes,toolbar=yes');
             childWindow.document.open();
             let n=document.getElementById("dName").value;
             childWindow.document.write('<html><head><title>'+n+'</title></head><body>');
@@ -162,10 +174,6 @@
             childWindow.document.close();
             childWindow.close();
         }
-        // function doExport(){
-        //     let insert=document.getElementById("textbox").value;
-        //     document.getElementById("exportPreview").innerHTML=insert;
-        // }
         function doPreview(){
             let insert="clipboard to come in future ..."
             document.getElementById("exportPreview").innerHTML=insert;
@@ -184,7 +192,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.09 from 13-12-2023 19h19 - 8bit style but modern features!");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.10 from 25-01-2024 18h07 - 8bit style but modern features!");
         }
         function doCPC(){
             document.getElementById("textbox").style.background="blue";
@@ -219,18 +227,16 @@
             k="";
             let l=document.getElementById("textbox").value.length;
             for(n=0;n<l;n++){
-                x=cryptoStart+Math.random()*cryptoRange;
+                x=cryptoStart+Math.random()*(cryptoRange/2);
                 k+=String.fromCharCode(x);
             }
-            // cryptoWindow.document.getElementById("key").value=k;
         }
         function doCrypt(){
-            // createKey();
             let l=document.getElementById("textbox").value.length;
             let s=document.getElementById("textbox").value;
             let keyx=k;
             if((l!=keyx.length)||(l==0)){
-                    alert("no usable key - please create one!");
+                    alert("crypt error!");
                 }
             else{
                 k="";
@@ -240,17 +246,39 @@
                     c1=x.charCodeAt(0);
                     y=keyx.substring(n,n+1);
                     c2=y.charCodeAt(0);
-                    c1=c1^c2;
+                    c1=c1^c2; //exor
+                    //c1=c1+c2; //plus
                     k+=String.fromCharCode(c1);
                 }
-                // document.getElementById("dest").value=k;
                 }
         }
+        // function doDecrypt(){
+        //     let l=document.getElementById("textbox").value.length;
+        //     let s=document.getElementById("textbox").value;
+        //     let keyx=k;
+        //     if((l!=keyx.length)||(l==0)){
+        //             alert("crypt error!");
+        //         }
+        //     else{
+        //         k="";
+        //         let n,c1,c2,x="",y="";
+        //         for(n=0;n<l;n++){
+        //             x=s.substring(n,n+1);
+        //             c1=x.charCodeAt(0);
+        //             y=keyx.substring(n,n+1);
+        //             c2=y.charCodeAt(0);
+        //             // c1=c1^c2; //exor
+        //             c1=c1-c2; //minus
+        //             k+=String.fromCharCode(c1);
+        //         }
+        //         }
+        // }
         function doEncrypt(){
-            var cryptoWindow = window.open('','cryptoWindow','location=yes,menubar=yes,toolbar=yes');
+            var cryptoWindow=window.open('','cryptoWindow','location=yes,menubar=yes,toolbar=yes');
             cryptoWindow.document.open();
             let n="cryptoDialog";
             cryptoWindow.document.write('<html><head><title>'+n+'</title></head><body>');
+            cryptoWindow.document.write("beta version! only for utf-8 7 bit (ascii)!");
             cryptoWindow.document.write("text to encrypt:");
             cryptoWindow.document.write("<br>")
             cryptoWindow.document.write(document.getElementById('textbox').value.replace(/\n/gi,'<br>'));
@@ -281,29 +309,22 @@
         <button onclick="doRandom()">random</button>
         <label for="flag">text changed:</label>
         <input type="checkbox" id="flag" unchecked>
-        <!-- <label for="textname">open file...</label> -->
         <input id="textName" type="file" value="untiteld.txt" oninput="doLoad()" hidden>
         <button onclick="document.getElementById('textName').click()">open file...</button>
-        <!-- <button>save</button> -->
         <button onclick="doLoad()">(re)load</button>
-        <!-- <span id="copyright">hTextJS v1.05 (c) hhtg. 2023</span> -->
-        <span id="copyright">v1.09</span>
-        <!-- <br> -->
+        <!-- <span id="copyright">hTextJS v1.10 (c) hhtg. 2024</span> -->
+        <span id="copyright">v1.10</span>
         <button onclick="doDownload()">save/download</button>
         as:<input id="dName" type="text" value="h-edit-js.txt" size="10">
         <button onclick="printTextBox()">print/save to PDF...</button>
-        <!-- <button onclick="doExport()">export...</button> -->
-        <!-- <button onclick="doPreview()">export clipboard ...</button> -->
         <button onclick="doEncrypt()">KGB-crypt...</button>
         <button onclick="doSelAll()">select all</button>
         <!-- <button onclick="doCopy()">copy</button>
         <button>cut</button>
-        <button onclick=""doPaste()>paste</button>
-        <button onclick="doEncrypt()">KGB-crypt...</button>
-        <button onclick="doDecrypt()">decrypt...</button> -->
+        <button onclick=""doPaste()>paste</button> -->
     </div>
     <div>
-        <textarea id="textbox" onchange="setFlag()" rows="24" cols="80">empty universe ...</textarea>
+        <textarea id="textbox" onchange="setFlag()" rows="32" cols="80">empty universe ...</textarea>
     </div>
     <div id="csets">
     colourset:
