@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Solar System</title>
+    <style>
+        body{
+            height: 100%;
+            width: auto;
+            background-color: #222222;
+            /* border: 1px solid #eeeeee; */
+            text-align: center;
+            color: #dddddd;
+        }
+        #title{
+            width: auto;
+            background-color: #222222;
+            border: 1px solid #eeeeee;
+            text-align: center;
+            color: #dddddd;
+        }
+        #map{
+            width: auto;
+            height: 400px;
+            border: 1px solid #33dd33;
+        }
+        #info{
+            width: auto;
+            height: 48px;
+            border: 1px solid #3333bb;
+        }
+        #keys{
+            width: auto;
+            height: 36px;
+            border: 1px solid #3333bb;
+        }
+    </style>
+</head>
+<body>
+    <div id="buttonrow">
+        <button onclick="window.location.href='launch.html'">Launch</button>
+        <button onclick="window.location.href='filemenu.html'">File Menu</button>
+        <button>Equipment</button>
+        <button>Missions</button>
+        <button onclick="window.location.href='galaxy.html'">Galaxy View</button>
+        <button>Local Solar System</button>
+        <button onclick="window.location.href='planetinfo.html'">Planet Info</button>
+        <button>Trade</button>
+    </div>
+    <div id="title">
+        Local Solar System
+    </div>
+    <div id="map">
+        <canvas></canvas>
+    </div>
+    <div id="info">
+        Space Ship Communication
+    </div>
+    <div id="keys">
+        Keys
+        <br>
+        w - up  s - down  a - left  d - right  i - info
+    </div>
+</body>
+</html>
