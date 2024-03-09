@@ -82,11 +82,16 @@
         var cryptoStart=32;
         var charRange=64;
         var k="";
+        // function warn(){
+        //     alert("recent changes are NOT saved! do you want to continue?");
+        // }
         function setFlag(){
             document.getElementById("flag").checked=true;
-            window.onbeforeunload=function() {
-                return ""; // 'Do you want to leave?';
-            }
+            // window.onbeforeunload=function(warn) {warn.returnValue="?";}
+            window.onbeforeunload=function() {return "";}
+            // function() {
+            //     return "";
+            // }
         }
         function clearFlag(){
             document.getElementById("flag").checked=false;
@@ -192,7 +197,7 @@
             //document.getElementById("textbox").execCommand("paste");
         }
         function doInfo(){
-            alert("simple Text Editor in Javascript (c) hhtg. v1.10 from 25-01-2024 18h07 - 8bit style but modern features!");
+            alert("simple Text Editor in Javascript (c) hhtg. v1.11 from 09-03-2024 21h35 - 8bit style but modern features!");
         }
         function doCPC(){
             document.getElementById("textbox").style.background="blue";
@@ -313,7 +318,7 @@
         <button onclick="document.getElementById('textName').click()">open file...</button>
         <button onclick="doLoad()">(re)load</button>
         <!-- <span id="copyright">hTextJS v1.10 (c) hhtg. 2024</span> -->
-        <span id="copyright">v1.10</span>
+        <span id="copyright">v1.11</span>
         <button onclick="doDownload()">save/download</button>
         as:<input id="dName" type="text" value="h-edit-js.txt" size="10">
         <button onclick="printTextBox()">print/save to PDF...</button>
@@ -324,7 +329,7 @@
         <button onclick=""doPaste()>paste</button> -->
     </div>
     <div>
-        <textarea id="textbox" onchange="setFlag()" rows="32" cols="80">empty universe ...</textarea>
+        <textarea id="textbox" onchange="setFlag()" rows="32" cols="80"></textarea>
     </div>
     <div id="csets">
     colourset:
