@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hDrawJSv0.4</title>
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; }
+        #canvas { border: 1px solid black; cursor: crosshair; }
+        #controls { margin: 10px; }
+        button { margin: 5px; }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <label for="colorPicker">colour: </label>
+        <input type="Color" id="colorPicker" value="#000000">
+        <label for="fill">filled: </label>
+        <input type="checkbox" id="fill">
+        
+        <button onclick="selectTool('draw')">Draw</button>
+        <button onclick="selectTool('line')">Line</button>
+        <button onclick="selectTool('point')">Point</button>
+        <button onclick="selectTool('circle')">Circle</button>
+        <button onclick="clearCanvas()">Clear CLS</button>
+    </div>
+
+    <canvas id="canvas" width="800" height="500"></canvas>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        const colorPicker = document.getElementById("colorPicker");
+        const fillCheckbox = document.getElementById("fill");
+
+        let tool = "draw"; // Default tool
+        let isDrawing = false;
+        let startX, startY;
+
+        // Tool Selection Function
+        function selectTool(selectedTool) {
+            tool = selectedTool;
+        }
+
+        // Mouse Down Event
+        canvas.addEventListener("mousedown", (e) => {
+            isDrawing = true;
+            startX = e.offsetX;
+            startY = e.offsetY;
+
+            if (tool === "point") {
+                drawPoint(startX, startY);
+            }
+        });
+
+        // Mouse Up Event
+        canvas.addEventListener("mouseup", (e) => {
+            if (!isDrawing) return;
+
+            const endX = e.offsetX;
+            const endY = e.offsetY;
+
+            switch (tool) {
+                case "line":
+                    drawLine(startX, startY, endX, endY);
+                    break;
+                case "circle":
+                    drawCircle(startX, startY, endX, endY);
+                    break;
+            }
+            isDrawing = false;
+        });
+
+        // Mouse Move Event for Drawing
+        canvas.addEventListener("mousemove", (e) => {
+            if (tool === "draw" && isDrawing) {
+                drawLine(startX, startY, e.offsetX, e.offsetY);
+                startX = e.offsetX;
+                startY = e.offsetY;
+            }
+        });
+
+        // Draw Point
+        function drawPoint(x, y) {
+            ctx.fillStyle = colorPicker.value;
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Draw Line
+        function drawLine(x1, y1, x2, y2) {
+            ctx.strokeStyle = colorPicker.value;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        // Draw Circle
+        function drawCircle(x1, y1, x2, y2) {
+            const radius = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            ctx.strokeStyle = colorPicker.value;
+            ctx.fillStyle = colorPicker.value;
+
+            ctx.beginPath();
+            ctx.arc(x1, y1, radius, 0, Math.PI * 2);
+            if (fillCheckbox.checked) {
+                ctx.fill();
+            } else {
+                ctx.stroke();
+            }
+        }
+
+        // Clear Canvas
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+
+</body>
+</html>
