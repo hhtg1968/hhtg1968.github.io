@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Heinrich Hubbert - hhtg.">
+    <title>KGBcryptJS1 v2.01 16-10-2025 18h51 (c) hhtg. 2025</title>
+    <style>
+        body{
+            background-color: #444444;
+            color: #dddddd;
+        }
+        #link{
+            background-color: #222222;
+            color: aqua;
+        }
+        #source{
+            background-color: #222222;
+            color: #dddddd;
+        }
+        #dest{
+            background-color: #222222;
+            color: #ee9700;
+        }
+        #dest2{
+            background-color: #222222;
+            color: #11dd11;
+        }
+    </style>
+    <script>
+        var cryptoRange=64;
+        var cryptoStart=33;
+        function insertLazy(){
+            document.getElementById("source").value="the quick brown fox jumps over the lazy dog.";
+        }
+        function insertFun(){
+            document.getElementById("source").value="Henner Hubbert ist ein Held aus der Waschmaschine!";
+        }
+        function insertRandom(){
+            //document.getElementById("source").value="Henner Hubbert ist ein Held aus der Waschmaschine!";
+            let lll=128-33;
+            let ll=4+Math.random()*255;
+            let kk="";
+            let nn,xx;
+            for(nn=0;nn<ll;nn++){
+                xx=32+Math.random()*lll;
+                kk+=String.fromCharCode(xx);
+            }
+            document.getElementById("source").value=kk;
+        }
+        function clearSource(){
+            document.getElementById("source").value="";
+        }
+        function createKey(){
+            let l=document.getElementById("source").value.length;
+            let k="";
+            let n,x;
+            for(n=0;n<l;n++){
+                x=cryptoStart+Math.random()*cryptoRange; // better SUPERrand!
+                k+=String.fromCharCode(x);
+            }
+            document.getElementById("key").value=k;
+        }
+        function doEncrypt(){
+            // createKey();
+            let l=document.getElementById("source").value.length;
+            let s=document.getElementById("source").value;
+            let keyx=document.getElementById("key").value;
+            if((l!=keyx.length)||(l==0)){
+                    alert("no usable key - please create one!");
+                }
+            else{
+                let k="";
+                let n,c1,c2,x="",y="";
+                for(n=0;n<l;n++){
+                    x=s.substring(n,n+1);
+                    c1=x.charCodeAt(0);
+                    y=keyx.substring(n,n+1);
+                    c2=y.charCodeAt(0);
+                    c1=c1^c2;
+                    k+=String.fromCharCode(c1);
+                }
+                document.getElementById("dest").value=k;
+                }
+        }
+        function doDecrypt(){
+            let l=document.getElementById("dest").value.length;
+            let s=document.getElementById("dest").value;
+            let keyx=document.getElementById("key").value;
+            let k="";
+            let n,c,x="",y="";
+            for(n=0;n<l;n++){
+                x=s.substring(n,n+1);
+                c1=x.charCodeAt(0);
+                y=keyx.substring(n,n+1);
+                c2=y.charCodeAt(0);
+                c1=c1^c2;
+                k+=String.fromCharCode(c1);
+            }
+            document.getElementById("dest2").value=k;
+        }
+        function doInfo(){
+            alert("bei der One-Pad-Verschlüsselung ist der Schlüssel so lang wie der Text. Wenn man wirkliche Zufallszahlen unterstellt, ist er nicht zu knacken...")
+        }
+    </script>
+</head>
+<body>
+    <!-- <label for="keyL">length of key:</label>
+    <input id="keyL" type="number" value="16"> -->
+    <button onclick="doInfo()">INFO!</button>
+    hhtg/ KGB encryption v2.01 (c) 2025!
+    <a href="https://de.wikipedia.org/wiki/One-Time-Pad" id="link">wikipedia-link</a>
+    <br>
+    <button>load file...</button>
+    <button onclick="clearSource()">clear</button>
+    <button onclick="insertLazy()">insert lazy dog</button>
+    <button onclick="insertFun()">insert fun</button>
+    <button onclick="insertRandom()">insert random text</button>
+    <label for="source">source:</label><br>
+    <textarea id="source" type="textarea" cols="80" rows="4"></textarea><br>
+    <button onclick="createKey()">create key</button>
+    <button>load key...</button>
+    <button>save key</button>
+    as:<textarea rows="1" cols="16">key.khh</textarea>
+    <label for="key">key:</label>
+    <br>
+    <textarea id="key" type="textarea" cols="80" rows="4"></textarea><br>
+    <br>
+    <button onclick="doEncrypt()">encrypt</button>
+    <button>save encrypted file</button>
+    as:<textarea rows="1" cols="16">encrypted.xhh</textarea>
+    <label for="dest">encrypted:</label>
+    <br>
+    <textarea id="dest" type="textarea" cols="80" rows="4"></textarea><br>
+    <button onclick="doDecrypt()">decrypt</button>
+    <button>save encrypted file</button>
+    as:<textarea rows="1" cols="16">decrypted.dat</textarea>
+    <label for="dest2">decrypted:</label>
+    <br>
+    <textarea id="dest2" type="textarea" cols="80" rows="4"></textarea>
+    <br>
+</body>
+</html>
