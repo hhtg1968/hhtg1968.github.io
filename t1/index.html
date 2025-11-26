@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head><title>t1</title><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui=1"><meta charset="UTF-8"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="description" content=""><link rel="manifest" href="manifest.json"><link rel="icon" type="image/png" href="icon64.png"><link rel="apple-touch-icon" sizes="180x180" href="icon180.png"><link rel="icon" type="image/png" sizes="32x32" href="icon32.png"><link rel="icon" type="image/png" sizes="16x16" href="icon16.png"><style>html,body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  overflow:hidden;
+  font-family: Verdana;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#canvaswrapper {
+  text-align: center ;
+}
+</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"grass1.png","version":2,"size":100,"properties":{"frames":1,"fps":5}},{"file":"hello.png","version":38,"size":293,"properties":{"frames":1,"fps":5}},{"file":"hero1.png","version":15,"size":179,"properties":{"frames":1,"fps":5}},{"file":"hero2.png","version":17,"size":972,"properties":{"frames":1,"fps":5}},{"file":"icon.png","version":0,"size":0,"properties":{}},{"file":"tree1.png","version":4,"size":154,"properties":{"frames":1,"fps":5}},{"file":"water1.png","version":3,"size":100,"properties":{"frames":1,"fps":5}}],"assets":[],"maps":{"map1":"{\"width\":24,\"height\":16,\"block_width\":16,\"block_height\":16,\"sprites\":[0,\"grass1\",\"water1\",\"tree1\"],\"data\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,2,2,2,2,2,2,2,1,1,1,2,1,1,3,1,2,0,0,0,0,1,3,3,1,1,1,1,1,1,1,1,1,2,2,1,2,3,3,1,2,0,0,0,0,2,1,3,1,2,1,1,1,2,2,2,2,1,1,2,2,3,3,1,2,0,0,0,0,2,1,3,1,2,2,2,1,1,1,2,1,2,2,2,2,3,3,1,2,0,0,0,0,1,1,2,1,2,2,2,1,1,1,1,1,2,2,2,2,3,3,1,2,0,0,0,0,1,1,2,1,2,2,1,1,2,2,1,1,1,1,2,1,3,2,1,2,0,0,0,0,1,1,2,2,2,2,1,2,2,2,2,2,2,2,1,1,1,2,1,2,0,0,0,0,1,1,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,1,0,0,0,0,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}"},"sounds":[],"music":[]};
+var graphics = "M1";
+
+</script><script type="text/javascript">var orientation = 'any' ;
+var aspect = 'free' ;
+var ms_libs = [] ;
+window.skip_service_worker = true;
+window.exported_project = true;
+window.ms_use_server = false ;
+</script><script src="compiler.js"></script><script src="parser.js"></script><script src="processor.js"></script><script src="program.js"></script><script src="routine.js"></script><script src="runner.js"></script><script src="token.js"></script><script src="tokenizer.js"></script><script src="transpiler.js"></script><script src="microengine.js"></script></body><script type="text/javascript">//
+//
+// The game is started with the code below.
+// Once you have received the "started" signal (see below),
+// you can do the following:
+// 1) Inject functions or objects into the global context of the microStudio engine, example:
+//
+//   window.player.setGlobal("special_callback",function(x) { console.info(x) }) ;
+//   // Your microScript code can now call the "special_callback" function
+//
+// 2) Call microScript global functions from your JavaScript code, example:
+//
+//   window.player.call("call_me_from_javascript",[10,1000]) ;
+//   // arguments to the function call are provided as an array
+//
+// 3) Run a microScript code snippet from your JavaScript code, example:
+//
+//   window.player.exec("player.position_x = 50",function(result) { console.log(result) ; }) ;
+//
+
+window.addEventListener("load",function() {
+  window.player = new Player(function(event) {
+    if (event.name == "started") {
+      // signal that the game is started
+    }
+    else if (event.name == "log") {
+      // console.info(event.data) ;
+    }
+  }) ;
+  document.body.focus() ;
+}) ;
+
+</script><script id="code" type="text/x-microscript">
+
+
+function()
+init = function()
+  //status="Hello World!"
+  //print("Hello!")
+  screen.drawSprite( "hello", x, y, 24, 33 )
+  sleep 2048*2
+  screen.drawMap( "map1", 0, 0, 300, 200 )
+  x=0
+  y=0
+end
+
+update = function()
+  if keyboard.RIGHT then x=x+1 end
+  if keyboard.LEFT then x=x-1 end
+  if keyboard.UP then y=y+1 end
+  if keyboard.DOWN then y=y-1 end
+end
+
+draw = function()
+  screen.clear()
+  screen.drawMap( "map1", 0, 0, 300, 200 )
+  //screen.drawSprite("hero1",x,y,8,8)
+  screen.drawSprite("hero2",x,y,24,33)
+end
+end()
+
+
+</script></html>
